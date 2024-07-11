@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h2>Registration Form
+        </h2>
+    </center>
+    <form action="" id="toform">
+        <label for="name">First name:</label>
+        <input type="text" id="name">
+        <label for="name1">Last name:</label>
+        <input type="text" id="name1">
+        <label for="email">Email:</label>
+        <input type="email" id="email">
+        <label for="pass1">Password:</label>
+        <input type="text" id="pass1">
+        <label for="pass2">Confirm Password:</label>
+        <input type="text" id="pass2">
+        <input type="submit" value="submit">
+    </form>
+    <script>
+        var form=document.forms[0];
+        document.getElementById("toform").addEventListener("submit",function(event){
+            console.log(event.target[3].value);
+            console.log(event.target[4].value);
+            if(event.target[3].value!=event.target[4].value){
+                event.preventDefault();
+                alert("password is not matching");
+            }
+            var str=event.target[2].value;
+            var str1=event.target[3].value;
+            var str2=JSON.parse(localStorage.getItem("email")) || "";
+            var str3=JSON.parse(localStorage.getItem("pass")) || "";
+            localStorage.setItem("email",JSON.stringify(str+str2));
+            localStorage.setItem("pass",JSON.stringify(str1+str3));
+            window.open("./login.html");
+        });
+    </script>
+</body>
+</html>
